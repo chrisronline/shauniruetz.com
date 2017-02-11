@@ -1,0 +1,18 @@
+@import "../shared/vars.scss";
+
+.bio-list {
+  margin-top: 2rem;
+}
+
+.bio-desc {
+  letter-spacing: 1px;
+  line-height: 23px;
+}
+
+.bio-heading {
+  font-variant: small-caps;
+  font-size: 28px;
+  color: $tan;
+  border-bottom: solid 2px $tan;
+  margin: 0 0 0.5rem 0;
+}

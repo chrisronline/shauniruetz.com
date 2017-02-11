@@ -1,0 +1,68 @@
+@import '../shared/vars.scss';
+
+.site-header {
+  font-family: $font-header;
+  display: flex;
+  align-content: space-around;
+  margin-top: -2rem;
+  pointer-events: none;
+
+  @include phone {
+    flex-direction: column;
+    background-color: $darker;
+  }
+}
+
+.site-heading,
+.site-subheading {
+  margin: 0;
+  padding: 0;
+  color: $tan;
+  text-transform: uppercase;
+
+  @include phone {
+    color: $light;
+  }
+}
+
+.site-heading {
+  font-size: 64px;
+  padding-top: 1.9rem;
+  position: relative;
+  top: 2rem;
+
+  @include phone {
+    text-align: center;
+    padding-top: 1rem;
+    font-size: 42px;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.mobile-nav-active .site-heading {
+  @include phone {
+    // text-align: left;
+    // padding-left: 4rem;
+  }
+}
+
+.site-subheading {
+  font-size: 18px;
+  text-align: right;
+  flex-grow: 1;
+  padding-top: 5.6rem;
+  font-family: $font-subheader;
+
+  @include phone {
+    padding-top: 0;
+    text-align: center;
+    padding-bottom: 0.5rem;
+  }
+}
+
+.mobile-nav-active .site-subheading {
+  @include phone {
+    // text-align: left;
+    // padding-left: 4rem;
+  }
+}

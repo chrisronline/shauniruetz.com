@@ -1,0 +1,45 @@
+{
+  "name": "shauniruetz",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "./node_modules/.bin/babel-node scripts/build.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "async": "^2.1.4",
+    "babel-cli": "6.22.2",
+    "babel-core": "6.22.1",
+    "babel-loader": "6.2.10",
+    "babel-preset-env": "1.1.8",
+    "babel-preset-es2016": "6.22.0",
+    "babel-preset-react": "6.22.0",
+    "critical": "^0.8.2",
+    "css-loader": "0.26.1",
+    "extract-text-webpack-plugin": "2.0.0-beta.5",
+    "fs-extra": "^2.0.0",
+    "gulp": "3.9.1",
+    "klaw-sync": "^1.1.1",
+    "node-sass": "4.3.0",
+    "react": "15.4.2",
+    "react-dom": "15.4.2",
+    "rimraf": "2.5.4",
+    "rsync": "^0.6.1",
+    "sass-loader": "4.1.1",
+    "style-loader": "0.13.1",
+    "textract": "2.1.1",
+    "webpack": "2.2.0",
+    "webpack-stream": "3.2.0"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.12.0",
+    "classnames": "2.2.5",
+    "react-enroute": "1.0.0",
+    "react-image-lightbox": "3.4.2",
+    "react-lite": "0.15.31",
+    "react-modal": "1.6.5",
+    "superagent": "3.4.1"
+  }
+}

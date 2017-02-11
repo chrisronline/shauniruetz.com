@@ -1,0 +1,32 @@
+$dark: #1D2326;
+$darker: darken($dark, 10);
+$light: #DDDCC5;
+$tan: #958976;
+$dark-tan: #6A6A61;
+$pop: #611427;
+
+$font-header: 'Mathilde';//Amatic SC';
+$font-subheader: 'Patrick Hand SC';
+$font-body: 'Patrick Hand SC';
+
+
+$tablet-width: 768px;
+$desktop-width: 1024px;
+
+@mixin phone {
+  @media (max-width: #{$tablet-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$desktop-width}) {
+    @content;
+  }
+}

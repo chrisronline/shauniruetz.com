@@ -1,0 +1,145 @@
+@import "../shared/vars.scss";
+
+.resume-download {
+  background-color: $pop;
+  border: outset 1px $dark;
+  border-radius: 5px;
+  padding: 0.5rem 2rem;
+  color: $light;
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.resume-top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.resume-top-right {
+  text-align: right;
+}
+
+.resume-top-left {
+  margin-top: 2rem;
+}
+
+.resume-top-left > h4 {
+  margin: 0;
+  font-size: 36px;
+}
+
+.resume-top-section {
+  margin: 0;
+}
+
+.resume-section {
+  margin-bottom: 2rem;
+}
+
+.resume-header-title {
+  font-variant: small-caps;
+  font-size: 28px;
+  color: $tan;
+  border-bottom: solid 2px $tan;
+  margin: 0 0 0.5rem 0;
+}
+
+.resume-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.resume-list--modified {
+  @include phone {
+    padding-left: 0;
+  }
+}
+
+.resume-list-item {
+  display: flex;
+
+  @include phone {
+    margin-bottom: 1rem;
+  }
+
+  > span {
+    flex: 1;
+
+    @include phone {
+      // font-size: 14px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      padding-right: 5px;
+    }
+
+    @include desktop {
+      &:last-child {
+        text-align: right;
+      }
+    }
+  }
+}
+
+.resume-section-subheader {
+  margin: 0;
+  font-style: italic;
+}
+
+.resume-list-item-category {
+  width: 60px;
+  text-align: right;
+  display: inline-block;
+  &:after {
+    content: ':'
+  }
+
+  @include phone {
+    text-align: left;
+  }
+}
+
+.resume-list-item-sublist {
+  margin-left: 5px;
+}
+
+.resume-list-item-sublist--modified {
+  list-style: none;
+  position: relative;
+  top: -26px;
+  left: 30px;
+}
+
+.resume-stacked-item {
+  margin-bottom: 1rem;
+}
+
+.resume-stacked-item-category {
+  color: $tan;
+  margin-right: 7px;
+  &:after {
+    content: ':';
+  }
+}
+
+.lightbox-trigger {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.resume-image-1:before {
+  content: url('/assets/images/1Dogfight-Rose.jpg');
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transform: scale(0.5);
+  display: none;
+}
+
+.resume-image-1:hover:before {
+  display: block;
+}

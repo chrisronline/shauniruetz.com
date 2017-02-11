@@ -1,0 +1,97 @@
+@import 'components/shared/vars.scss';
+@font-face {
+	font-family: 'Mathilde';
+	src: url('/assets/fonts/mathilde.eot#iefix') format('embedded-opentype'),
+	     url('/assets/fonts/mathilde.woff') format('woff'),
+	     url('/assets/fonts/mathilde.ttf')  format('truetype'),
+	     url('/assets/fonts/mathilde.svg#Mathilde') format('svg');
+}
+
+html {
+  font-family: $font-body;
+  font-size: 18px;
+  letter-spacing: 0.75px;
+  background-color: $dark;
+  color: $light;
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+@include desktop {
+	body:after {
+	  background: url('/assets/images/1.jpg') no-repeat center center fixed;
+	  background-size: cover;
+	  content: '';
+	  opacity: 0.2;
+	  top: 0;
+	  left: 0;
+	  bottom: 0;
+	  right: 0;
+	  position: fixed;
+	  z-index: -1;
+	}
+
+	body.bio-bg:after {
+		background-image: url('/assets/images/2.jpg');
+		opacity: 0.2;
+	}
+}
+
+/* Start downloading this right away */
+#precache {
+	background-image: url('/assets/images/2.jpg');
+}
+
+.container {
+	width: 100%;
+  padding-bottom: 2rem;
+	box-sizing: border-box;
+
+	@include tablet {
+		padding: 1rem;
+	}
+
+  @include desktop {
+		width: 800px;
+	  margin: 0 auto;
+  }
+}
+
+@include phone {
+  .site-header, .content {
+    transform: translateX(0px);
+  }
+
+  .site-header, .content, .site-nav, .nav-mobile {
+    transition: transform 0.5s;
+  }
+
+  .mobile-nav-active {
+    .site-header, .content {
+      position: relative;
+      transform: translateX(120px);
+    }
+  }
+}
+
+.content {
+  margin-top: 2rem;
+  @include phone {
+    padding: 0 2rem;
+  }
+}
+
+.page-heading {
+  font-variant: small-caps;
+  font-family: $font-subheader;
+}
+
+/* This might be bad.. */
+a {
+  cursor: pointer;
+}
