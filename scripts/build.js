@@ -72,7 +72,8 @@ function optimize(htmlPath, css, cb) {
     minify: true,
     extract: true,
     width: 1300,
-    height: 900
+    height: 900,
+    ignore: ['font-face']
   }, cb)
 }
 

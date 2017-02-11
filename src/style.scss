@@ -1,11 +1,4 @@
 @import 'components/shared/vars.scss';
-@font-face {
-	font-family: 'Mathilde';
-	src: url('/assets/fonts/mathilde.eot#iefix') format('embedded-opentype'),
-	     url('/assets/fonts/mathilde.woff') format('woff'),
-	     url('/assets/fonts/mathilde.ttf')  format('truetype'),
-	     url('/assets/fonts/mathilde.svg#Mathilde') format('svg');
-}
 
 html {
   font-family: $font-body;
@@ -45,6 +38,10 @@ body {
 /* Start downloading this right away */
 #precache {
 	background-image: url('/assets/images/2.jpg');
+}
+
+.fonts-loading .container {
+  visibility: hidden;
 }
 
 .container {
