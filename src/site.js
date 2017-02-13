@@ -6,6 +6,17 @@ import Home from './components/home/home'
 import Bio from './components/bio/bio'
 import Resume from './components/resume/resume'
 import Media from './components/media/media'
+import Headshots from './components/headshots/headshots'
+import Contact from './components/contact/contact'
+
+const bodyClasses = [
+  'home-bg',
+  'bio-bg',
+  'resume-bg',
+  'media-bg',
+  'headshots-bg',
+  'contact-bg'
+]
 
 if (process.env.BROWSER) {
   require('./style.scss')
@@ -15,6 +26,16 @@ function AttachRoute(site, component) {
   return ({ children }) => {
     return React.createElement(component, { site }, children)
   }
+}
+
+function updateBodyClass(page) {
+  bodyClasses.forEach(cls => document.body.classList.remove(cls))
+  document.body.classList.add(page + '-bg')
+}
+
+if (process.env.BROWSER) {
+  updateBodyClass(window.location.pathname.substring(1))
+  window.addEventListener('NAVIGATED', ({ detail }) => updateBodyClass(detail))
 }
 
 class Site extends Component {
@@ -51,6 +72,8 @@ class Site extends Component {
           <Route path="bio" component={Bio}/>
           <Route path="resume" component={Resume}/>
           <Route path="media" component={Media}/>
+          <Route path="headshots" component={Headshots}/>
+          <Route path="contact" component={Contact}/>
           <Route path="home" component={Home}/>
         </Route>
       </Router>

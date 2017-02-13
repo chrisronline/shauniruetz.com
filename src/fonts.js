@@ -1,6 +1,6 @@
 import WebFontLoader from 'webfontloader'
 
-const font = new FontFace(
+const mathilde = new FontFace(
 	'Mathilde',
 	'url(/assets/fonts/mathilde.woff)',
 	{
@@ -10,7 +10,12 @@ const font = new FontFace(
 	}
 );
 
-let left = 0
+const fontAwesome = new FontFace(
+	'FontAwesome',
+	'url(/assets/fonts/fontawesome-webfont.woff)',
+);
+
+let left = 3
 function done() {
 	if (--left <= 0) {
 		setTimeout(() => {
@@ -21,8 +26,6 @@ function done() {
 
 
 export default function loadFonts() {
-	let loaded = 0
-
 	WebFontLoader.load({
 		google: {
 			families: ['Patrick Hand SC']
@@ -30,9 +33,16 @@ export default function loadFonts() {
 		active: done
 	})
 
-	font.load()
+	mathilde.load()
 		.then(() => {
-			document.fonts.add(font)
+			document.fonts.add(mathilde)
+			done()
+		})
+
+	fontAwesome.load()
+		.then(() => {
+			console.log("fontawesome")
+			document.fonts.add(fontAwesome)
 			done()
 		})
 }

@@ -1,0 +1,38 @@
+@import "../shared/vars.scss";
+
+.page-headshots {
+  text-align: center;
+}
+
+.headshots-list {
+  margin-bottom: 4rem;
+  @include phone {
+    margin-bottom: 0;
+  }
+}
+
+.headshot {
+  width: 40%;
+  margin-right: 2rem;
+  @include phone {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 2rem;
+  }
+}
+
+.headshot:first-child {
+  position: relative;
+  top: 2.5rem;
+  @include tablet {
+    top: 1rem;
+  }
+
+  @include phone {
+    top: 0;
+  }
+}
+
+.headshot:nth-child(2) {
+  margin-right: 0;
+}

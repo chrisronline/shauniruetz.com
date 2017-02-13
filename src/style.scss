@@ -2,7 +2,7 @@
 
 html {
   font-family: $font-body;
-  font-size: 18px;
+  font-size: 20px;
   letter-spacing: 0.75px;
   background-color: $dark;
   color: $light;
@@ -15,29 +15,42 @@ body {
   padding: 0;
 }
 
-@include desktop {
-	body:after {
-	  background: url('/assets/images/1.jpg') no-repeat center center fixed;
-	  background-size: cover;
-	  content: '';
-	  opacity: 0.2;
-	  top: 0;
-	  left: 0;
-	  bottom: 0;
-	  right: 0;
-	  position: fixed;
-	  z-index: -1;
-	}
-
-	body.bio-bg:after {
-		background-image: url('/assets/images/2.jpg');
-		opacity: 0.2;
-	}
+body:after {
+  background: url('/assets/images/1.jpg') no-repeat center center fixed;
+  background-size: cover;
+  background-position-x: 150px;
+  content: '';
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: fixed;
+  z-index: -1;
 }
 
-/* Start downloading this right away */
-#precache {
-	background-image: url('/assets/images/2.jpg');
+body.bio-bg:after {
+  background-image: url('/assets/images/2.jpg');
+}
+
+body.contact-bg:after {
+  background-image: url('/assets/images/3.jpg');
+}
+
+body.resume-bg:after, body.headshots-bg:after {
+  background-image: linear-gradient(#111, #111);
+}
+
+@include phone {
+  body:after {
+    background-position-x: -200px;
+    background-position-y: 70px;
+  }
+  body.bio-bg:after {
+    background-position-x: 30%;
+  }
+  body.resume-bg:after, body.headshots-bg:after {
+    display: none;
+  }
 }
 
 .fonts-loading .container {
@@ -48,14 +61,14 @@ body {
 	width: 100%;
   padding-bottom: 2rem;
 	box-sizing: border-box;
+  padding-left: 2rem;
 
 	@include tablet {
 		padding: 1rem;
 	}
 
-  @include desktop {
-		width: 800px;
-	  margin: 0 auto;
+  @include phone {
+    padding-left: 0;
   }
 }
 
@@ -78,8 +91,32 @@ body {
 
 .content {
   margin-top: 2rem;
+  margin-left: 7rem;
+  width: 550px;
+  margin-top: 3rem;
+  box-sizing: border-box;
+
   @include phone {
-    padding: 0 2rem;
+    padding: 0 1rem;
+    margin-left: 0;
+    margin-top: 1rem;
+    width: 100%;
+  }
+
+  @include tablet {
+    margin-top: 5rem;
+  }
+}
+
+@include phone {
+  .bio-bg .content {
+    width: 50%;
+  }
+}
+
+@include desktop {
+  .resume-bg .content, .headshots-bg .content {
+    width: calc(100% - 150px);
   }
 }
 
@@ -91,4 +128,6 @@ body {
 /* This might be bad.. */
 a {
   cursor: pointer;
+  color: $light;
+  text-decoration: underline;
 }

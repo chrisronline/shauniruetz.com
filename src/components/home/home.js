@@ -68,6 +68,12 @@ class Home extends Component {
 
     return (
       <section className="page">
+
+      </section>
+    )
+
+    return (
+      <section className="page">
         <header>
           <h2 className="page-heading">Latest News</h2>
         </header>

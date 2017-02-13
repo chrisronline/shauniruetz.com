@@ -1,0 +1,37 @@
+.fb-contact {
+  margin-bottom: 2rem;
+}
+
+.fb-contact-link, .email-contact-link {
+  text-align: center;
+  padding: 1rem 2.5rem;
+  display: inline-block;
+  font-size: 24px;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12)
+}
+
+.fb-contact-link {
+  background-color: #2196F3;
+  color: #fff;
+}
+
+.email-contact-link {
+  background-color: #d14836;
+  color: #fff;
+}
+
+.fb-icon, .email-icon {
+  font-family: "FontAwesome";
+  display: inline-block;
+  margin-right: 1rem;
+  text-rendering: auto;
+  font-style: normal;
+}
+
+.fb-icon:before {
+  content: '\f09a';
+}
+
+.email-icon:before {
+  content: '\f0e0'
+}

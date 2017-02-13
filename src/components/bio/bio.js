@@ -4,19 +4,6 @@ if (process.env.BROWSER) {
   require('./bio.scss')
 }
 
-function updateBodyClass(page) {
-  if (page === 'bio') {
-    document.body.classList.add('bio-bg')
-  } else {
-    document.body.classList.remove('bio-bg')
-  }
-}
-
-if (process.env.BROWSER) {
-  updateBodyClass(window.location.pathname.substring(1))
-  window.addEventListener('NAVIGATED', ({ detail }) => updateBodyClass(detail))
-}
-
 class Bio extends PureComponent {
   render() {
     return (
