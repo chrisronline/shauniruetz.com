@@ -1,3 +1,11 @@
+@import '../shared/vars.scss';
+
+.page-contact {
+  @include phone {
+    margin-top: 10rem;
+  }
+}
+
 .fb-contact {
   margin-bottom: 2rem;
 }

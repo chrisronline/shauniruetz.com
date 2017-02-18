@@ -5,14 +5,18 @@
   font-family: $font-subheader;
   text-transform: uppercase;
   padding-top: 0.5rem;
-  position: absolute;
-  left: 40px;
-  top: 200px;
+  position: fixed;
+  left: 38px;
+  top: 95px;
+  box-shadow: 10px 0 5px -5px black;
+  height: 100%;
+
   @include phone {
     position: absolute;
     top: 0;
-    transform: translateX(-170px);
-    background-color: $darker;
+    transform: translateX(-130px);
+    background-color: $dark;
+    box-shadow: none;
     padding: 1rem;
     height: 100%;
     border-top: none;
@@ -58,12 +62,12 @@
   @include phone {
     display: block;
     font-size: 24px;
-    z-index: 2;
+    z-index: 3;
     cursor: pointer;
     height: 35px; /* Clickable area */
     width: 35px;
     position: absolute;
-    left: 180px;
+    left: 150px;
     top: 23px;
     &:before {
       content: '';

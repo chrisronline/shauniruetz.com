@@ -2,25 +2,22 @@
 
 .site-header {
   font-family: $font-header;
-  display: flex;
-  align-content: space-around;
-  margin-top: -2rem;
   pointer-events: none;
-  margin-left: 7rem;
+  margin-left: 5rem;
+  background-color: $dark;
+  height: 100px;
+  box-shadow: 10px 5px 5px black;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 2;
 
   @include phone {
-    flex-direction: column;
-    background-color: $darker;
+    box-shadow: none;
     margin-left: 0;
-  }
-}
-
-@include desktop {
-  .home-bg .site-header {
-    margin-left: 0;
-    .site-heading {
-      font-size: 150px;
-    }
+    position: static;
+    z-index: 1;
+    height: 75px;
   }
 }
 
@@ -36,33 +33,15 @@
 }
 
 .site-heading {
-  font-size: 180px;
-  padding-top: 1.9rem;
+  font-size: 96px;
+  text-align: center;
   position: relative;
-  top: 1rem;
-  margin-bottom: -5rem;
-  transform: rotate(-10deg);
+  left: -5rem;
+  top: 0.5rem;
 
   @include phone {
-    text-align: center;
-    font-size: 48px;
-    margin-bottom: 0;
-    transform: none;
-  }
-  @include tablet {
-    font-size: 100px;
-  }
-}
-
-@include desktop {
-  .contact-bg .site-heading {
-    color: $dark;
-  }
-}
-
-@include tablet {
-  .contact-bg .site-heading {
-    color: $dark;
+    left: 0;
+    top: -0.25rem;
   }
 }
 

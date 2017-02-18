@@ -41,7 +41,6 @@ export default function loadFonts() {
 
 	fontAwesome.load()
 		.then(() => {
-			console.log("fontawesome")
 			document.fonts.add(fontAwesome)
 			done()
 		})
