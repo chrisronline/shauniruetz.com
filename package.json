@@ -40,6 +40,7 @@
     "react-image-lightbox": "3.4.2",
     "react-lite": "0.15.31",
     "react-modal": "1.6.5",
+    "react-youtube": "7.3.0",
     "superagent": "3.4.1",
     "webfontloader": "1.6.27"
   }

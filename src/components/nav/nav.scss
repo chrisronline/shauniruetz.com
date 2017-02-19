@@ -14,7 +14,7 @@
   @include phone {
     position: absolute;
     top: 0;
-    transform: translateX(-130px);
+    transform: translateX(-135px);
     background-color: $dark;
     box-shadow: none;
     padding: 1rem;
@@ -67,7 +67,7 @@
     height: 35px; /* Clickable area */
     width: 35px;
     position: absolute;
-    left: 150px;
+    left: 145px;
     top: 23px;
     &:before {
       content: '';

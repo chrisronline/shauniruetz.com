@@ -72,7 +72,7 @@ class Resume extends PureComponent {
                 <p className="resume-top-section">Voice Type: Alto, Mezzo, High Belt</p>
               </div>
               <div className="resume-top-right">
-                <img className="bbr-logo responsive-img" src="assets/images/bbr_logo.png"/>
+                <img className="bbr-logo responsive-img" src="/assets/images/bbr_logo.png"/>
                 <p className="resume-top-section">Brady, Brannon &amp; Rich</p>
                 <p className="resume-top-section">323.852.9559</p>
                 <p className="resume-top-section">Bi-Coastal Theatrical/Legit</p>

@@ -53,14 +53,23 @@ class Site extends Component {
       })
       if (window.location.pathname === '/') {
         this.navigate('/home')
+      } else {
+        this.setTitle(window.location.pathname)
       }
     }
+  }
+
+  setTitle(path) {
+    let title = path.substr(1)
+    title = title[0].toUpperCase() + title.substr(1)
+    document.title = `Shauni Ruetz - ${title}`
   }
 
   navigate(path) {
     if (process.env.BROWSER) {
       history.pushState(null, '', path)
-      window.dispatchEvent(new CustomEvent('NAVIGATED', { detail: path.substring(1) }))
+      this.setTitle(path)
+      window.dispatchEvent(new CustomEvent('NAVIGATED', { detail: path.substr(1) }))
       this.setState({ location: path })
     }
   }

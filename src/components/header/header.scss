@@ -40,8 +40,9 @@
   top: 0.5rem;
 
   @include phone {
-    left: 0;
-    top: -0.25rem;
+    left: 10px;
+    top: 5px;
+    font-size: 72px;
   }
 }
 
