@@ -44,4 +44,9 @@
       content: none;
     }
   }
+
+  @include tablet {
+    color: $dark-tan;
+    border-bottom-color: $dark-tan;
+  }
 }
