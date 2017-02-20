@@ -12,19 +12,24 @@
 
 <div id="root"></div>
 
+<noscript id="deferred-styles">
+	<link rel="stylesheet" type="text/css" href="dist/bundle.css"/>
+</noscript>
 <script>
-(function() {
-	document.addEventListener('DOMContentLoaded', function(event) {
-		['dist/bundle.css']
-			.forEach(function(url) {
-				var link = document.createElement('link')
-				link.href = url
-				link.rel = 'stylesheet'
-				document.getElementsByTagName('head')[0].appendChild(link)
-			})
-  })
-})()
+	// https://developers.google.com/speed/docs/insights/OptimizeCSSDelivery
+	var loadDeferredStyles = function() {
+		var addStylesNode = document.getElementById("deferred-styles");
+		var replacement = document.createElement("div");
+		replacement.innerHTML = addStylesNode.textContent;
+		document.body.appendChild(replacement)
+		addStylesNode.parentElement.removeChild(addStylesNode);
+	};
+	var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+			webkitRequestAnimationFrame || msRequestAnimationFrame;
+	if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
+	else window.addEventListener('load', loadDeferredStyles);
 </script>
+
 <script async src="dist/bundle.js"></script>
 
 </body>

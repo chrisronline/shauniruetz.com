@@ -20,7 +20,9 @@ body {
 }
 
 body:after {
-  background: url('/assets/images/1.jpg') no-repeat center center fixed;
+  background-image: url('/assets/images/1.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
   background-size: cover;
   background-position-x: 150px;
   background-position-y: 100px;

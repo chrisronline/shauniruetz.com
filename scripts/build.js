@@ -10,18 +10,23 @@ import Site from '../src/site'
 import webpack from 'webpack'
 import webpackConfig from '../webpack.config.prod.js'
 import critical from 'critical'
+import zlib from 'zlib'
 
-const s3Root = 'http://s3.amazonaws.com/shauni-ruetz/'
+const s3Bucket = 'shauni-ruetz'
+const s3Root = `http://s3.amazonaws.com/${s3Bucket}/`
+const s3 = new AWS.S3({apiVersion: '2006-03-01'})
 const deployDir = path.join(__dirname, '..', 'deploy')
 const deployHMDir = path.join(deployDir, 'hm')
 const deployS3Dir = path.join(deployDir, 'assets')
 const srcDir = path.join(__dirname, '..')
 
+
 const justDeploy = false
+const justPurge = false
 if (justDeploy) {
-  deploy(() => {
-    console.log('done')
-  })
+  deploy(() => console.log('done'))
+} else if (justPurge) {
+  purgeS3(null, () => console.log('done'))
 } else {
   console.log(`Ensuring deploy exists...`)
   fs.ensureDirSync(deployHMDir)
@@ -48,8 +53,11 @@ if (justDeploy) {
     console.log(`Optimizing...`)
     optimize(path.join(deployHMDir, 'index.html'), builtCssPath, err => {
       if (err) throw err
+      console.log(`Removing non gzipped files...`)
+      fs.removeSync(builtJsPath)
+      fs.removeSync(builtCssPath)
       console.log(`Deploying...`)
-      deploy(() => {
+      deploy(hash, () => {
         console.log('Done!')
       })
     })
@@ -68,7 +76,7 @@ function getSsrSite() {
 }
 
 function optimize(htmlPath, css, cb) {
-  critical.generate({
+  const criticalParams = {
     inline: true,
     base: deployDir,
     src: htmlPath,
@@ -78,19 +86,20 @@ function optimize(htmlPath, css, cb) {
     extract: true,
     width: 1300,
     height: 900,
-    ignore: ['font-face']
-  }, cb)
+    ignore: ['font-face', 'background-image']
+  }
+  critical.generate(criticalParams, cb)
 }
 
-function updateAssetUrls(builtJsPath, builtCssPath) {
+function updateAssetUrls(builtJsPath, builtCssPath, cb) {
   let js = fs.readFileSync(builtJsPath).toString()
   let css = fs.readFileSync(builtCssPath).toString()
 
   js = js.replace(/\/assets/g, s3Root + 'assets')
   css = css.replace(/\/assets/g, s3Root + 'assets')
 
-  fs.outputFileSync(builtJsPath, js)
-  fs.outputFileSync(builtCssPath, css)
+  fs.outputFileSync(builtJsPath + '.gz', zlib.gzipSync(js))
+  fs.outputFileSync(builtCssPath + '.gz', zlib.gzipSync(css))
 }
 
 function copyIndexFile(ssr, builtJsPath, builtCssPath) {
@@ -106,19 +115,19 @@ function copyIndexFile(ssr, builtJsPath, builtCssPath) {
     )
     .replace(
       'dist/bundle.js',
-      s3Root + builtJsPath.substring(builtJsPath.indexOf('assets/'))
+      s3Root + builtJsPath.substring(builtJsPath.indexOf('assets/')) + '.gz'
     )
     .replace(
       'dist/bundle.css',
-      s3Root + builtCssPath.substring(builtCssPath.indexOf('assets/'))
+      s3Root + builtCssPath.substring(builtCssPath.indexOf('assets/')) + '.gz'
     )
   fs.outputFileSync(path.join(deployHMDir, 'index.html'), indexFile)
 }
 
-function deploy(cb) {
+function deploy(hash, cb) {
   deployToHM(err => {
     if (err) throw err
-    deployToS3(cb)
+    deployToS3(hash, cb)
   });
 }
 
@@ -139,9 +148,8 @@ function deployToHM(cb) {
     })
 }
 
-function deployToS3(cb) {
+function deployToS3(hash, cb) {
   console.log(`Deploying to S3...`)
-  const s3 = new AWS.S3({apiVersion: '2006-03-01'})
 
   const files = klaw(deployS3Dir, { nodir: true })
     .map(file => {
@@ -157,7 +165,7 @@ function deployToS3(cb) {
     ({ filePath, s3Path }, callback) => {
       const contents = fs.readFileSync(filePath)
       const params = {
-        Bucket: 'shauni-ruetz',
+        Bucket: s3Bucket,
         Key: s3Path,
       }
 
@@ -172,9 +180,13 @@ function deployToS3(cb) {
           params.ContentType = 'text/html'
         } else if (s3Path.indexOf('.js') > -1) {
           params.ContentType = 'text/javascript'
+          params.ContentEncoding = 'gzip'
         } else if (s3Path.indexOf('.css') > -1) {
           params.ContentType = 'text/css'
+          params.ContentEncoding = 'gzip'
         }
+
+        params.Expires = Math.floor(Date.now()/1000) + (60 * 60 * 24 * 365)
 
         console.log(`Uploading ${s3Path}...`)
         s3.putObject(params, (err, data) => {
@@ -187,28 +199,37 @@ function deployToS3(cb) {
     (err) => {
       if (err) throw err
       console.log('Done deploying to S3...')
-      console.log(`Updating CORS...`)
-      const cors = {
-        Bucket: 'shauni-ruetz',
-        CORSConfiguration: {
-          CORSRules: [
-            {
-              AllowedMethods: ['GET'],
-              AllowedOrigins: [
-                'http://shauni-stage.croberson.net',
-                'http://www.shauniruetz.com',
-                'http://shauniruetz.com'
-              ]
-            }
-          ]
-        }
-      }
-
-      s3.putBucketCors(cors, (err, data) => {
-        if (err) throw err
-        console.log('Successfully updated CORS...')
-        cb()
-      })
+      console.log(`Pruning old S3 assets...`)
+      purgeS3(hash, cb)
     }
   )
+}
+
+function purgeS3(hash, cb) {
+  console.log(`Purging old assets from S3...`)
+  s3.listObjects({ Bucket: s3Bucket, Prefix: 'assets/site_' }, (err, result) => {
+    if (err) throw err
+    const keysToRemove = result.Contents.reduce((list, item) => {
+      if (!hash || item.Key.indexOf(hash) === -1) {
+        console.log(`Removing ${item.Key}...`)
+        list.push({ Key: item.Key })
+      }
+      return list
+    }, [])
+
+    if (!keysToRemove.length) {
+      console.log(`Done purging old assets from S3...`)
+      return cb()
+    }
+
+    const deleteParams = {
+      Bucket: s3Bucket,
+      Delete: { Objects: keysToRemove }
+    }
+    s3.deleteObjects(deleteParams, (err) => {
+      if (err) throw err
+      console.log(`Done purging old assets from S3...`)
+      cb()
+    })
+  })
 }
