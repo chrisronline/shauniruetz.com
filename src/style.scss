@@ -57,9 +57,13 @@ body.media-bg:after {
   body.resume-bg:after,
   body.headshots-bg:after,
   body.bio-bg:after,
-  body.contact-bg:after,
   body.media-bg:after {
     display: none;
+  }
+
+  body.contact-bg:after {
+    background-size: 100%;
+    background-position-x: 0;
   }
 }
 

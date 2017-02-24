@@ -8,9 +8,11 @@ if (process.env.BROWSER) {
 
 const VideoTag = ({ url }) => {
   return (
-    <video className="media-video" controls>
-      <source src={url} type="video/mp4" />
-    </video>
+    <div className="media-video-wrapper">
+      <video className="media-video" controls>
+        <source src={url} type="video/mp4" />
+      </video>
+    </div>
   )
 }
 
@@ -43,7 +45,7 @@ class Media extends PureComponent {
           <header className="media-header">
             <h3 className="media-heading">Studio</h3>
           </header>
-          <YouTube videoId="yHousn2S2PI" opts={{width: '100%'}} />
+          <YouTube videoId="yHousn2S2PI" opts={{width: '50%'}} />
         </article>
         <article className="media-section">
           <header className="media-header">
