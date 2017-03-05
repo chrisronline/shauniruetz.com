@@ -2,8 +2,14 @@
 
 @include phone {
   .page-contact {
-    margin-top: 14rem;
+    margin-top: 19rem;
+    margin-left: -0.5rem;
   }
+}
+
+.fb-contact, .email-contact {
+  display: inline-block;
+  margin-right: 0.5rem;
 }
 
 .fb-contact {
