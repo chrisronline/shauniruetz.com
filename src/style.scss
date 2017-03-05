@@ -112,7 +112,7 @@ body.media-bg:after {
 }
 
 .content {
-  margin-top: 7rem;
+  margin-top: 9rem;
   margin-left: 7rem;
   width: 550px;
   box-sizing: border-box;
@@ -128,6 +128,21 @@ body.media-bg:after {
   @include tablet {
     width: calc(100% - 150px);
   }
+}
+
+.content:before {
+  content: 'PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP';
+  font-family: BorderFont;
+  font-size: 64px;
+  position: fixed;
+  top: 124px;
+  left: 154px;
+  height: 29px;
+  display: block;
+  overflow: hidden;
+  color: $light;
+  background: $dark;
+  width: 100%;
 }
 
 @include desktop {

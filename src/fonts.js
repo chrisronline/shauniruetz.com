@@ -1,21 +1,31 @@
 import WebFontLoader from 'webfontloader'
 
-const mathilde = new FontFace(
-	'Mathilde',
-	'url(/assets/fonts/mathilde.woff)',
-	{
-		style: 'normal',
-		unicodeRange: 'U+000-5FF',
-		weight: '400'
-	}
-);
+const fonts = [
+	new FontFace(
+		'Mathilde',
+		'url(/assets/fonts/mathilde.woff)',
+		{
+			style: 'normal',
+			unicodeRange: 'U+000-5FF',
+			weight: '400'
+		}
+	),
+	new FontFace(
+		'FontAwesome',
+		'url(/assets/fonts/fontawesome-webfont.woff)',
+	),
+	new FontFace(
+		'BorderFont',
+		'url(/assets/fonts/332EA8_0_0.woff)',
+		{
+			style: 'normal',
+			unicodeRange: 'U+000-5FF',
+			weight: '400'
+		}
+	)
+]
 
-const fontAwesome = new FontFace(
-	'FontAwesome',
-	'url(/assets/fonts/fontawesome-webfont.woff)',
-);
-
-let left = 3
+let left = fonts.length + 1
 function done() {
 	if (--left <= 0) {
 		setTimeout(() => {
@@ -33,15 +43,11 @@ export default function loadFonts() {
 		active: done
 	})
 
-	mathilde.load()
-		.then(() => {
-			document.fonts.add(mathilde)
-			done()
-		})
-
-	fontAwesome.load()
-		.then(() => {
-			document.fonts.add(fontAwesome)
-			done()
-		})
+	fonts.forEach(font => {
+		font.load()
+			.then(() => {
+				document.fonts.add(font)
+				done()
+			})
+	})
 }
