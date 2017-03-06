@@ -59,6 +59,10 @@ class Site extends Component {
     }
   }
 
+  componentDidUpdate() {
+    document.body.scrollTop = 0
+  }
+
   setTitle(path) {
     let title = path.substr(1)
     title = title[0].toUpperCase() + title.substr(1)

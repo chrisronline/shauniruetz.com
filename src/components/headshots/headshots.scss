@@ -14,22 +14,12 @@
 .headshot {
   width: 33%;
   margin-right: 2rem;
+  display: inline-block;
+  vertical-align: top;
   @include phone {
     width: 100%;
     margin-right: 0;
     margin-bottom: 2rem;
-  }
-}
-
-.headshot:first-child {
-  position: relative;
-  top: 2.5rem;
-  @include tablet {
-    top: 1rem;
-  }
-
-  @include phone {
-    top: 0;
   }
 }
 
