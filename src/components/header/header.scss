@@ -3,10 +3,8 @@
 .site-header {
   font-family: $font-header;
   pointer-events: none;
-  margin-left: 5rem;
   background-color: $dark;
   height: 100px;
-  box-shadow: 10px 5px 5px black;
   position: fixed;
   top: 0;
   width: 100%;
@@ -36,8 +34,6 @@
   font-size: 96px;
   text-align: center;
   position: relative;
-  left: -5rem;
-  top: 0.5rem;
 
   @include phone {
     left: 10px;

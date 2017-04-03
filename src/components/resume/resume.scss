@@ -13,6 +13,7 @@
 
 .resume {
   display: flex;
+  font-size: 19px;
 }
 
 .actual-resume {
@@ -131,6 +132,11 @@
   }
 }
 
+.resume-image-section {
+  position: relative;
+  left: 120px;
+}
+
 @include phone {
   .resume-image-section {
     display: none;
@@ -148,7 +154,8 @@
 }
 
 .resume-image-list-item {
-  height: 200px;
+  height: 250px;
+  width: 250px;
   background-size: cover;
   margin-bottom: 1.5rem;
 }
@@ -159,16 +166,29 @@
   text-align: center;
   position: relative;
   top: -1.5rem;
+  font-size: 18px;
 }
 
 .resume-image-1 {
   background-image: url('/assets/images/1Dogfight-Rose.jpg');
   background-position-y: -50px;
 }
-.resume-image-2 { background-image: url('/assets/images/2Aida-Dance Captain.jpg') }
-.resume-image-3 { background-image: url('/assets/images/3Little Shop of Horrors- Crystal9.jpg') }
-.resume-image-4 { background-image: url('/assets/images/4Once in a Lifetime-Tapper_Dance Captain.jpg') }
-.resume-image-5 { background-image: url('/assets/images/5Side Show-Bearded Lady.png') }
+.resume-image-2 {
+  background-image: url('/assets/images/2Aida-Dance Captain.jpg');
+  background-position-x: -49px;
+}
+.resume-image-3 {
+  background-image: url('/assets/images/3Little Shop of Horrors- Crystal9.jpg');
+  background-position-x: -33px;
+}
+.resume-image-4 {
+  background-image: url('/assets/images/4Once in a Lifetime-Tapper_Dance Captain.jpg');
+  background-position-x: -40px;
+}
+.resume-image-5 {
+  background-image: url('/assets/images/5Side Show-Bearded Lady.png');
+  background-position-x: -39px;
+}
 .resume-image-6 { background-image: url('/assets/images/6The Imaginary A New Musical Concept Album-Lizzie.jpg') }
 .resume-image-7 { background-image: url('/assets/images/7Intro To Show Biz Workshop-Instructor.jpg') }
 .resume-image-8 { background-image: url('/assets/images/8New York\'s Got Talent- Season 2! Semi-Finalist.jpg') }

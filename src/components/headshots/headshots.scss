@@ -4,16 +4,11 @@
   text-align: center;
 }
 
-.headshots-list {
-  margin-bottom: 4rem;
-  @include phone {
-    margin-bottom: 0;
-  }
-}
 
 .headshot {
-  width: 33%;
-  margin-right: 2rem;
+  width: 30%;
+
+  margin-right: 1rem;
   display: inline-block;
   vertical-align: top;
   @include phone {
@@ -23,6 +18,16 @@
   }
 }
 
-.headshot:nth-child(2) {
+@include desktop {
+  .headshot {
+    max-height: 368px;
+  }
+}
+
+.headshot:nth-child(1) {
+  // height:
+}
+
+.headshot:nth-child(3) {
   margin-right: 0;
 }

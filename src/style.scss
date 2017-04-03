@@ -22,10 +22,9 @@ body {
 body:after {
   background-image: url('/assets/images/1.jpg');
   background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  background-position-x: 150px;
-  background-position-y: 100px;
+  background-position: bottom center;
+  background-size: 66%;
+  background-position-y: 121px;
   content: '';
   top: 0;
   left: 0;
@@ -37,6 +36,9 @@ body:after {
 
 body.bio-bg:after {
   background-image: url('/assets/images/2.jpg');
+  background-size: 106%;
+  background-position-y: 111px;
+  background-position-x: 210px;
 }
 
 body.contact-bg:after {
@@ -47,12 +49,14 @@ body.resume-bg:after,
 body.headshots-bg:after,
 body.media-bg:after {
   background-image: linear-gradient(#111, #111);
+  background-size: cover;
 }
 
 @include phone {
   body:after {
     background-position-x: -230px;
     background-position-y: 70px;
+    background-size: cover;
   }
   body.resume-bg:after,
   body.headshots-bg:after,
@@ -89,7 +93,6 @@ body.media-bg:after {
   height: 100%;
   padding-bottom: 2rem;
 	box-sizing: border-box;
-  padding-left: 2rem;
 
   @include phone {
     padding-left: 0;
@@ -114,7 +117,7 @@ body.media-bg:after {
 
 .content {
   margin-top: 9rem;
-  margin-left: 7rem;
+  margin-left: 12rem;
   width: 550px;
   box-sizing: border-box;
   height: 100%;
@@ -135,21 +138,28 @@ body.media-bg:after {
 .content:before {
   content: 'PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP';
   font-family: BorderFont;
-  font-size: 64px;
+  font-size: 44px;
   position: fixed;
-  top: 99px;
-  left: 154px;
-  height: 29px;
+  top: 81px;
+  left: 0;
+  height: 21px;
   display: block;
   overflow: hidden;
   color: $light;
   background: $dark;
   width: 100%;
+  z-index: 2;
 
   @include phone {
     position: absolute;
     top: -20px;
     left: 0;
+  }
+}
+
+@include desktop {
+  .bio-bg .content {
+    width: 610px;
   }
 }
 
@@ -160,8 +170,12 @@ body.media-bg:after {
 }
 
 @include desktop {
-  .resume-bg .content, .headshots-bg .content, .media-bg .content {
-    width: calc(100% - 150px);
+  .resume-bg .content, .media-bg .content {
+    width: calc(100% - 500px);
+  }
+
+  .headshots-bg .content {
+    width: calc(100% - 400px);
   }
 }
 
