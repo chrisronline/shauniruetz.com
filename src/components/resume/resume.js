@@ -62,7 +62,7 @@ class Resume extends PureComponent {
 
     return (
       <section className="page page-resume">
-        <a className="resume-download" href="/assets/resume.docx">Download Resume</a>
+        <a className="resume-download" href="/assets/resume.pdf">Download Resume</a>
         <section className="resume">
           <section className="actual-resume">
             <div className="resume-top">
