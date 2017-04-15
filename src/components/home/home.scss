@@ -3,7 +3,7 @@
 
 .current-events {
   position: absolute;
-  right: 0;
+  right: 25px;
   top: 120px;
   width: 300px;
   text-align: right;
@@ -38,6 +38,10 @@
 
 .brave-girl {
   width: 100%;
+}
+
+.brave-girl-caption:hover {
+  cursor: pointer;
 }
 
 @include phone {
