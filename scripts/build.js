@@ -139,8 +139,8 @@ function deployToHM(cb) {
     .shell('ssh')
     .flags('rzltv')
     .source(source)
-    .destination('croberso@ftp.croberson.net:/home2/croberso/public_html/shauni-stage/')
-    // .destination('croberso@ftp.croberson.net:/home2/croberso/public_html/shauniruetz/')
+    // .destination('croberso@ftp.croberson.net:/home2/croberso/public_html/shauni-stage/')
+    .destination('croberso@ftp.croberson.net:/home2/croberso/public_html/shauniruetz/')
     .execute((err, code, cmd) => {
       if (err) throw err
       console.log(`Done deploying to HM...`)
